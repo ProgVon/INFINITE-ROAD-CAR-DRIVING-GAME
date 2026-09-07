@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neon Highway - Retro 3D Arcade Driving Game</title>
+  <meta name="description" content="An infinite retro pseudo-3D synthwave highway driving game. Weave through traffic, pull off close calls, switch lanes, and beat the high score.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="game-wrapper">
+    <!-- Main Pseudo-3D Canvas -->
+    <canvas id="game-canvas"></canvas>
+
+    <!-- CRT Scanline Aesthetic Overlay -->
+    <div id="crt-overlay"></div>
+
+    <!-- In-Game Arcade HUD -->
+    <div id="hud-overlay">
+      <!-- Top Bar: Scores -->
+      <div class="hud-top-bar">
+        <div class="hud-panel">
+          <div class="hud-label">SCORE</div>
+          <div id="hud-score" class="hud-value hud-score-val">0</div>
+        </div>
+
+        <!-- Center Combo Indicator -->
+        <div id="combo-container" class="hidden">
+          <div class="combo-badge">
+            <div class="combo-text">CLOSE CALL COMBO</div>
+            <div id="hud-combo-multiplier" class="combo-num">2x</div>
+            <div class="combo-timer-bar">
+              <div id="combo-timer-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-panel" style="text-align: right;">
+          <div class="hud-label">HIGH SCORE</div>
+          <div id="hud-highscore" class="hud-value hud-highscore-val">0</div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar: Gauges & Controls -->
+      <div class="hud-bottom-bar">
+        <div class="hud-panel speedometer-card">
+          <div class="hud-label">SPEED</div>
+          <div class="hud-value"><span id="hud-speed">0</span><span class="speed-unit">MPH</span></div>
+          <div class="speed-gauge">
+            <div id="speed-bar-fill"></div>
+          </div>
+        </div>
+
+        <button id="btn-toggle-crt" class="hud-btn" title="Toggle retro CRT scanlines">CRT FILTER</button>
+
+        <div class="hud-panel" style="text-align: right;">
+          <div class="hud-label">DISTANCE</div>
+          <div class="hud-value"><span id="hud-distance">0.0</span><span class="speed-unit">KM</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start Menu Screen Modal -->
+    <div id="menu-screen" class="game-modal">
+      <div class="modal-content">
+        <h1 class="game-title">NEON HIGHWAY</h1>
+        <p class="game-subtitle">Infinite Retro Arcade Driving</p>
+
+        <div class="controls-grid">
+          <div class="control-item">
+            <span class="key-badge">A / D &nbsp;or&nbsp; &larr; &rarr;</span>
+            <span class="control-desc">Snap & Switch Across 4 Lanes</span>
+          </div>
+          <div class="control-item">
+            <span class="key-badge">W / &uarr;</span>
+            <span class="control-desc">Nudge Forward & Turbo Boost</span>
+          </div>
+          <div class="control-item">
+            <span class="key-badge">S / &darr;</span>
+            <span class="control-desc">Nudge Back & Brake</span>
+          </div>
+          <div class="control-item">
+            <span class="key-badge">P / ESC</span>
+            <span class="control-desc">Pause / Resume</span>
+          </div>
+        </div>
+
+        <button id="btn-start" class="arcade-btn">START RACE [SPACE]</button>
+      </div>
+    </div>
+
+    <!-- Game Over Screen Modal -->
+    <div id="gameover-screen" class="game-modal hidden">
+      <div class="modal-content">
+        <h2 class="gameover-title">CRASHED!</h2>
+        <div id="gameover-new-highscore" class="new-record-badge hidden">★ NEW PERSONAL BEST HIGH SCORE ★</div>
+
+        <div class="stats-table">
+          <div class="stat-row">
+            <span class="stat-name">Final Score</span>
+            <span id="gameover-score" class="stat-val stat-score-val">0</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-name">Distance Traveled</span>
+            <span id="gameover-distance" class="stat-val">0.0 KM</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-name">Close Calls Made</span>
+            <span id="gameover-closecalls" class="stat-val">0</span>
+          </div>
+        </div>
+
+        <button id="btn-restart" class="arcade-btn">RACE AGAIN [SPACE]</button>
+      </div>
+    </div>
+
+    <!-- Pause Screen Modal -->
+    <div id="pause-screen" class="game-modal hidden">
+      <div class="modal-content">
+        <h2 class="game-title">PAUSED</h2>
+        <p class="game-subtitle">Take a breather, driver</p>
+        <button id="btn-resume" class="arcade-btn">RESUME [ESC]</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js?v=8"></script>
+</body>
+</html>
